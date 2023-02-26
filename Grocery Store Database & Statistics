@@ -1,0 +1,62 @@
+--Create a database for a grocery store
+
+REATE TABLE Jevonco_Market (ID Integer PRIMARY KEY, item TEXT, product_type TEXT, aisle INTEGER, discount TEXT, weight TEXT, price INTEGER);
+
+INSERT INTO Jevonco_Market VALUES
+(1, "potato_chips", "snacks", 3, NULL, "13oz", 2.49),
+
+(2, "blueberries", "produce", 16, "15% OFF", "24oz", 4.49),
+
+(3, "matcha", "beverages", 12, NULL, "20oz", 4.99),
+
+(4, "ketchup", "condiments", 8, "Buy 2, get 1 FREE", "20oz", 3.99),
+
+(5, "kale", "produce", 1, NULL, "10oz", 2.99),
+
+(6, "tomatoes", "produce", 1, NULL, "25oz", 1.99), 
+
+(7, "chickpeas", "dried_goods", 4, NULL, "8oz", 0.99),
+
+(8, "rice", "dried_goods", 4, NULL, "10oz", 2.29),
+
+(9, "water", "beverages", 12, NULL, "128oz", 1.05),
+
+(10, "ice_cream", "desert", 17, "Buy 2, Get 1 FREE", "40oz", 3.49),
+
+(11, "soap", "wellness", 14, "Buy 1, Get 1 50% OFF", "4oz", 1.99),
+
+(12, "kombucha", "beverages", 12, NULL, "12oz", 3.49),
+
+(13, "spinach", "produce", 1, NULL, "3oz", 1.99),
+
+(14, "pasta", "dried_goods", 4, NULL, "5oz", 0.99),
+
+(15, "Shiraz", "cellar", 5, NULL, "32oz", 14.95);
+
+
+/* Display the database ordered by price*/
+SELECT *
+FROM Jevonco_Market
+ORDER BY price 
+ASC;
+
+/*How many items are on sale?*/
+SELECT COUNT(*)
+FROM jevonco_market
+WHERE discount 
+IS NOT NULL;
+
+/*What is the AVGprice of produce items?*/
+SELECT AVG(price) 
+FROM Jevonco_Market
+WHERE product_type LIKE "produce";
+
+
+
+
+
+
+
+
+
+
