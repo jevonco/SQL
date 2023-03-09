@@ -1,6 +1,6 @@
 --Create a database for a grocery store
 
-REATE TABLE Jevonco_Market (ID Integer PRIMARY KEY, item TEXT, product_type TEXT, aisle INTEGER, discount TEXT, weight TEXT, price INTEGER);
+CREATE TABLE Jevonco_Market (ID Integer PRIMARY KEY, item TEXT, product_type TEXT, aisle INTEGER, discount TEXT, weight TEXT, price INTEGER);
 
 INSERT INTO Jevonco_Market VALUES
 (1, "potato_chips", "snacks", 3, NULL, "13oz", 2.49),
