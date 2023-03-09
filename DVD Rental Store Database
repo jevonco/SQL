@@ -1,3 +1,9 @@
+The DVD Rental Store Database is comprised of 15 tables, totaling 44,820 rows.
+
+There are various analyses here demonstrating aggregate functions, subqueries, JOINs, GROUP BY/Having, Pattern Matching with wildcards, Extract with temporal data types
+
+
+--
 SELECT first_name, last_name, email
 FROM customer
 WHERE first_name = 'Nancy' AND last_name = 'Thomas';
