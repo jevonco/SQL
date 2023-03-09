@@ -1,0 +1,304 @@
+SELECT first_name, last_name, email
+FROM customer
+WHERE first_name = 'Nancy' AND last_name = 'Thomas';
+
+SELECT title,description
+FROM film
+WHERE title = 'Outlaw Hanky';
+
+SELECT address,phone
+FROM address
+WHERE address = '259 Ipoh Drive';
+
+SELECT customer_id, first_name, last_name
+FROM customer
+ORDER BY create_date
+LIMIT 10;
+
+SELECT * 
+FROM customer;
+
+SELECT *
+FROM payment;
+
+SELECT customer_id
+FROM payment
+ORDER BY payment_date
+LIMIT 10;
+
+SELECT COUNT(title)
+FROM film
+WHERE length <= 50;
+
+SELECT DISTINCT(amount)
+FROM Payment
+ORDER BY amount;
+
+SELECT COUNT(*)
+FROM payment
+WHERE amount NOT IN (0.99,1.98,1.99); 
+
+SELECT * 
+FROM customer
+WHERE first_name IN ('Jake', 'Julie', 'John');
+
+SELECT COUNT(*)
+FROM payment
+WHERE amount > 5.00;
+
+SELECT COUNT(*)
+FROM actor
+WHERE first_name 
+ILIKE 'P%';
+
+SELECT DISTINCT(district)
+FROM address;
+
+SELECT COUNT(*) 
+FROM film
+WHERE replacement_cost 
+BETWEEN 5 AND 15
+AND Rating = 'R';
+
+SELECT COUNT(*)
+FROM film
+WHERE title
+LIKE '%Truman%';
+
+SELECT customer_id
+FROM payment
+GROUP BY customer_id;
+
+SELECT staff_id,COUNT(*)
+FROM payment
+GROUP BY staff_id;
+
+SELECT ROUND(AVG(replacement_cost),2) AS AVG_Replacement_Cost,rating 
+FROM film
+GROUP BY rating
+ORDER BY AVG_Replacement_Cost DESC;
+
+SELECT *
+FROM payment;
+SELECT payment.customer_id,SUM(amount) AS total_spend, customer.first_name,customer.last_name
+FROM payment
+JOIN customer
+ON customer.customer_id = payment.customer_id
+GROUP BY payment.customer_id,customer.first_name,customer.last_name
+ORDER BY total_spend DESC
+LIMIT 5;
+
+SELECT customer_id, SUM(amount)
+FROM payment
+WHERE staff_id IN (2)
+GROUP BY customer_id
+HAVING SUM(amount) >= 100
+ORDER BY sum(amount);
+
+SELECT customer_id, SUM(amount)
+FROM payment
+WHERE staff_id IN (2)
+GROUP BY customer_id
+HAVING SUM(amount) >= 120
+ORDER BY sum(amount);
+
+SELECT customer_id,SUM(amount)
+FROM payment
+WHERE staff_id IN (2)
+GROUP by customer_id
+HAVING SUM(amount) >= 110;
+
+SELECT COUNT(*)
+FROM film 
+WHERE title
+ILIKE 'J%';
+
+SELECT MAX(customer_id)
+FROM customer
+WHERE first_name
+ILIKE 'E%'
+AND address_id < 500; 
+
+SELECT first_name, last_name,MAX(customer_id)
+FROM customer
+GROUP BY first_name, last_name,address_id
+HAVING first_name ILIKE 'E%'
+AND address_id < 500;
+
+SELECT first_name, last_name, customeR_id, address_id
+FROM customer
+WHERE first_name
+ILIKE 'E%'
+AND address_id < 500
+ORDER BY customer_id DESC
+LIMIT 1;
+
+SELECT *
+FROM payment
+FULL OUTER JOIN customer
+ON payment.customer_id = customer.customer_id;
+
+SELECT *
+FROM payment
+FULL OUTER JOIN customer
+ON payment.customer_id = customer.customer_id
+WHERE payment.payment_id IS NULL
+OR customer.customer_id IS NULL;
+
+SELECT *
+FROM film;
+SELECT *
+FROM inventory;
+SELECT film.film_id, title, inventory_id
+FROM film
+LEFT OUTER JOIN inventory
+ON inventory.film_id = film.film_id
+WHERE inventory.film_id IS NULL;
+
+SELECT film.film_id, title, inventory_id
+FROM inventory
+RIGHT OUTER JOIN film
+ON film.film_id = inventory.film_id
+WHERE inventory.film_id IS NULL;
+
+SELECT *
+FROM address
+WHERE district ILIKE 'California';
+
+SELECT email
+FROM customer
+INNER JOIN address
+ON customer.address_id = address.address_id
+WHERE district ILIKE 'California';
+
+SELECT *
+FROM actor
+WHERE first_name ILIKE 'nick'
+AND last_name ILIKE 'wahlberg';
+
+SELECT *
+FROM film;
+
+SELECT actor.first_name, actor.last_name,title, film.film_id, actor.actor_id
+FROM actor
+INNER JOIN film_actor
+ON actor.actor_id = film_actor.actor_id
+INNER JOIN film 
+ON film.film_id = film_actor.film_id
+WHERE actor.first_name ILIKE 'NICK'
+AND actor.last_name ILIKE 'WAHLBERG';
+
+SELECT NOW();
+SELECT TIMEOFDAY();
+SELECT CURRENT_TIME;
+SELECT CURRENT_DATE;
+
+
+SELECT *
+FROM PAYMENT;
+
+SELECT *
+FROM customer;
+
+SELECT first_name, last_name,
+EXTRACT(YEAR FROM last_update)
+FROM customer;
+
+SELECT *
+FROM Payment;
+
+SELECT EXTRACT(Month FROM payment_date) AS payment_month
+FROM payment;
+
+SELECT AGE(payment_date)
+FROM payment;
+
+SELECT TO_CHAR(payment_date,'mm/dd/YYYY') AS date_string
+FROM payment;
+
+SELECT EXTRACT(DAY FROM payment_date)
+FROM payment;
+
+SELECT DISTINCT(TO_CHAR(payment_date,'Month')) AS payment_month
+FROM payment;
+
+SELECT COUNT(TO_CHAR(payment_date,'Day'))
+FROM payment;
+
+SELECT EXTRACT(YEAR FROM payment_date)
+FROM payment;
+SELECT EXTRACT(Month FROM payment_date)
+FROM payment;
+
+SELECT COUNT(TO_CHAR(payment_date, 'Day'))
+FROM payment
+WHERE TO_CHAR(payment_date, 'Day')
+ILIKE 'Monday';
+
+
+SELECT COUNT(TO_CHAR(payment_date, 'Day'))
+FROM payment
+WHERE TO_CHAR(payment_date, 'Day')
+ILIKE 'Mon%';
+
+SELECT COUNT(EXTRACT(dow FROM payment_date))
+FROM payment
+WHERE EXTRACT(dow FROM payment_date) = 1;
+
+SELECT *
+FROM film;
+
+SELECT Round(rental_rate/replacement_cost,2)*100 AS percent_cost
+FROM film;
+
+SELECT LENGTH(first_name)
+FROM customer;
+
+SELECT first_name || ' ' || last_name
+AS full_name
+FROM customer;
+
+SELECT LOWER(LEFT(first_name,1)) || LOWER(last_name) || '@dvdrentaldb.com'
+FROM customer;
+
+SELECT *
+FROM film;
+
+SELECT rental_rate,title
+FROM film 
+WHERE rental_rate >
+(SELECT AVG(rental_rate)
+FROM film);
+
+SELECT *
+FROM rental;
+
+SELECT film_id,title 
+FROM film
+WHERE film_id IN (SELECT inventory.film_id
+FROM rental
+INNER JOIN inventory
+ON rental.inventory_id = inventory.inventory_id
+WHERE return_date BETWEEN '2005-05-29' 
+AND '2005-05-30')
+ORDER BY title;
+
+SELECT first_name,last_name
+FROM customer AS c
+WHERE EXISTS
+(SELECT * FROM payment AS P
+WHERE p.customer_id = c.customer_id
+AND amount > 11);
+
+SELECT *
+FROM payment;
+
+SELECT title,length
+FROM film
+WHERE length = 117;
+
+SELECT a.title,b.title AS partner_film, a.length
+FROM film a
+JOIN film b
+ON a.film_id != b.film_id
+AND a.length = b.length;
