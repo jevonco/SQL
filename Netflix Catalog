@@ -1,0 +1,12 @@
+
+
+SELECT
+
+(SELECT COUNT(*)
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE type ILIKE 'movie')
+/
+(SELECT COUNT(*) 
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info");
+
+
