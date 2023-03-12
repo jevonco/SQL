@@ -1,6 +1,9 @@
 
 
-/*What percentage of the Netflix catalog is movies?*/
+
+Link to database & query editor: https://bit.io/CharlotteChaze/BreakIntoTech
+
+1. /*What percentage of the Netflix catalog is movies?*/
 
 SELECT
 ROUND
@@ -13,7 +16,7 @@ WHERE type ILIKE 'movie') AS NUMERIC)
 FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"),2)
 AS movies;
 
-/*Who are the top 5 directors with the most titles in the Netflix Catalog?*/
+2. /*Who are the top 5 directors with the most titles in the Netflix Catalog?*/
 
 SELECT director, COUNT(title)
 FROM "CharlotteChaze/BreakIntoTech"."netflix_people" people
@@ -23,7 +26,7 @@ WHERE director IS NOT NULL
 GROUP BY director
 ORDER BY COUNT(title) DESC;
 
-/*Which directors were behind each title in the United States?*/
+3. /*Which directors were behind each title in the United States?*/
 
 SELECT  people.show_id, director, title, type
 FROM "CharlotteChaze/BreakIntoTech"."netflix_people" people
@@ -32,3 +35,11 @@ ON people.show_id = titles.show_id
 WHERE director IS NOT NULL
 AND country ILIKE 'United%'
 ORDER BY director;
+
+4. /*What is the oldest movie/TV Series in the Netflix Catalog?*/
+
+SELECT title,type,release_year
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE release_year
+= (SELECT MIN(release_year)
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info");
