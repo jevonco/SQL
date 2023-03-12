@@ -13,7 +13,7 @@ WHERE type ILIKE 'movie') AS NUMERIC)
 FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"),2)
 AS movies;
 
-/*Who care the top 5 directors with the most titles in the Netflix Catalog?*/
+/*Who are the top 5 directors with the most titles in the Netflix Catalog?*/
 
 SELECT director, COUNT(title)
 FROM "CharlotteChaze/BreakIntoTech"."netflix_people" people
@@ -32,14 +32,3 @@ ON people.show_id = titles.show_id
 WHERE director IS NOT NULL
 AND country ILIKE 'United%'
 ORDER BY director;
-
-/*Which directors were behind each title in the United States?*/
-
-SELECT  people.show_id, director, title, type
-FROM "CharlotteChaze/BreakIntoTech"."netflix_people" people
-JOIN "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
-ON people.show_id = titles.show_id
-WHERE director IS NOT NULL
-AND country ILIKE 'United%'
-ORDER BY director;
-
