@@ -43,20 +43,3 @@ WHERE director IS NOT NULL
 AND country ILIKE 'United%'
 ORDER BY director;
 
-/*return the date added and release year next to each other*/
-
-SELECT 
-EXTRACT(YEAR FROM date_added),release_year
-FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
-WHERE date_added > 
-(SELECT 
-CAST(date_added AS DATE)
-FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info")
-
-SELECT date_added,release_year
-FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
-WHERE date_added IN 2021-09-23
-(SELECT 
-CAST(date_added AS DATE)
-FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info");
-
