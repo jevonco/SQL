@@ -1,3 +1,5 @@
+In this analysis, I am querying multple tables to reveal customer and order statistics from a sales database.
+
 1. /*What were the total sales for January*/
 SELECT COUNT(*)
 FROM bit_db.jansales
@@ -43,6 +45,3 @@ ON c.order_id = f.orderid
 WHERE quantity > 2
 AND LENGTH(orderid) = 6
 AND orderid != 'Order ID';  
-
-
-
