@@ -56,7 +56,7 @@ WHERE LENGTH(orderid) = 6
 AND orderid != 'Order ID'
 GROUP BY product;
 
-/*Which locations in New York received at least 3 orders in January, and how many orders did they each receive?*/
+9. /*Which locations in New York received at least 3 orders in January, and how many orders did they each receive?*/
 
 SELECT DISTINCT(location), COUNT(*)
 FROM bit_db.jansales
@@ -66,21 +66,21 @@ AND orderid != 'Order ID'
 GROUP BY location 
 HAVING COUNT(*) >= 3;
 
-/*How many of each type of headphone were sold in February?*/
+10. /*How many of each type of headphone were sold in February?*/
 SELECT sum(Quantity) as quantity,
 Product
 FROM BIT_DB.FebSales 
 WHERE Product like '%Headphones%'
 GROUP BY Product; 
 
-SELECT product, SUM(quantity) AS unitsold
+11. SELECT product, SUM(quantity) AS unitsold
 FROM bit_db.febsales
 WHERE product LIKE '%headphone%'
 AND LENGTH(orderid) = 6
 AND orderid != 'Order ID'
 GROUP BY product; 
 
-/*What was the average amount spent per account in February?*/
+12. /*What was the average amount spent per account in February?*/
 SELECT acctnum,AVG(quantity*price) AS avgspent
 FROM bit_db.febsales f
 JOIN bit_db.customers c
@@ -89,7 +89,7 @@ WHERE LENGTH(orderid) = 6
 AND orderid != 'Order ID'
 GROUP BY acctnum;
 
-/*What was the average quantity of products purchased per account in February?*/
+13. /*What was the average quantity of products purchased per account in February?*/
 
 SELECT acctnum,SUM(quantity)/COUNT(quantity) AS avg_items
 FROM bit_db.febsales f
