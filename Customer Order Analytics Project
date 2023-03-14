@@ -13,12 +13,12 @@ AND LENGTH(orderid) = 6
 AND orderid != 'Order ID';
 
 3./* Which account holders placed orders in February?/*
-SELECT orderid,DISTINCT(acctnum)
+SELECT DISTINCT(acctnum), orderid
 FROM bit_db.febsales feb
-JOIN bit_db.customers customer
+INNER JOIN bit_db.customers customer
 ON feb.orderid = customer.order_id
 WHERE LENGTH(orderid) = 6
-AND orderid != 'Order ID' ;
+AND orderid != 'Order ID';
 
 4. /*Which product sold at the lowest price in January? How much was it?*/
 SELECT MIN(price) AS lowest_cost_product,product
