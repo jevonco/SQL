@@ -1,0 +1,47 @@
+1. /*What were the total sales for January*/
+SELECT COUNT(*)
+FROM bit_db.jansales
+WHERE LENGTH(orderid) = 6
+AND orderid != 'Order ID'; 
+
+2./*How many iPhone sales were there in January?*/
+SELECT COUNT(*)
+FROM bit_db.jansales
+WHERE product 
+LIKE 'iPhone'
+AND LENGTH(orderid) = 6
+AND orderid != 'Order ID';
+
+3./* Which account holders placed orders in February?/*
+SELECT orderid,DISTINCT(acctnum)
+FROM bit_db.febsales feb
+JOIN bit_db.customers customer
+ON feb.orderid = customer.order_id
+WHERE LENGTH(orderid) = 6
+AND orderid != 'Order ID' ;
+
+4. /*Which product sold at the lowest price in January? How much was it?*/
+SELECT MIN(price) AS lowest_cost_product,product
+FROM bit_db.jansales; 
+
+5. /*What was the total revenue for each product sold in January?*/
+SELECT product, SUM(product) AS productsales
+FROM bit_db.jansales
+GROUP BY product;
+
+6./*Which products were sold in February at 548 Lincoln Street, Seattle, WA 98101?*/
+SELECT *
+FROM bit_db.febsales
+WHERE location LIKE '548 Lincoln%';
+
+7./*How many customers ordered more than one product at a time in February, what was the average amount spent for those customers?*/
+
+
+
+1. Does SQLite use the ILIKE operator for case insensitive pattern matching? Relating to question #2.
+SELECT *
+FROM bit_db.jansales
+WHERE product ILIKE 'iphone'; 
+
+
+
