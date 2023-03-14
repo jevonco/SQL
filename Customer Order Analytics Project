@@ -45,3 +45,13 @@ ON c.order_id = f.orderid
 WHERE quantity > 2
 AND LENGTH(orderid) = 6
 AND orderid != 'Order ID';  
+
+8./*How many units of each product were sold in February, what was the total revenue for each product?*/
+SELECT 
+    DISTINCT(product) AS product, 
+    COUNT(quantity) AS totalsold, 
+    ROUND(SUM(price*quantity),2) AS total_product_revenue
+FROM bit_db.febsales
+WHERE LENGTH(orderid) = 6
+AND orderid != 'Order ID'
+GROUP BY product;
