@@ -25,17 +25,24 @@ SELECT MIN(price) AS lowest_cost_product,product
 FROM bit_db.jansales; 
 
 5. /*What was the total revenue for each product sold in January?*/
-SELECT product, SUM(product) AS productsales
+SELECT product,SUM(quantity)*price AS revenue 
 FROM bit_db.jansales
-GROUP BY product;
+GROUP by product; 
 
-6./*Which products were sold in February at 548 Lincoln Street, Seattle, WA 98101?*/
-SELECT *
+6./*Which products were sold in February at 548 Lincoln Street, Seattle, WA 98101, how many were soldm and what was the total revenue?*/
+SELECT product, SUM(quantity), SUM(quantity)*price AS revenue
 FROM bit_db.febsales
-WHERE location LIKE '548 Lincoln%';
+WHERE location = '548 Lincoln St, Seattle, WA 98101'
+GROUP BY product; 
 
 7./*How many customers ordered more than one product at a time in February, what was the average amount spent for those customers?*/
-
+SELECT COUNT(DISTINCT(acctnum)) AS number_of_customers, AVG(quantity*price) AS avgspent
+FROM bit_db.customers c
+LEFT JOIN bit_db.febsales f
+ON c.order_id = f.orderid
+WHERE quantity > 2
+AND LENGTH(orderid) = 6
+AND orderid != 'Order ID'; 
 
 
 1. Does SQLite use the ILIKE operator for case insensitive pattern matching? Relating to question #2.
