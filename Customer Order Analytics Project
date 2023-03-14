@@ -42,13 +42,7 @@ LEFT JOIN bit_db.febsales f
 ON c.order_id = f.orderid
 WHERE quantity > 2
 AND LENGTH(orderid) = 6
-AND orderid != 'Order ID'; 
-
-
-1. Does SQLite use the ILIKE operator for case insensitive pattern matching? Relating to question #2.
-SELECT *
-FROM bit_db.jansales
-WHERE product ILIKE 'iphone'; 
+AND orderid != 'Order ID';  
 
 
 
