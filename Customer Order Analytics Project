@@ -81,3 +81,20 @@ AND orderid != 'Order ID'
 GROUP BY product; 
 
 /*What was the average amount spent per account in February?*/
+SELECT acctnum,AVG(quantity*price) AS avgspent
+FROM bit_db.febsales f
+JOIN bit_db.customers c
+ON f.orderid = c.order_id
+WHERE LENGTH(orderid) = 6
+AND orderid != 'Order ID'
+GROUP BY acctnum;
+
+/*What was the average quantity of products purchased per account in February?*/
+
+SELECT acctnum,SUM(quantity)/COUNT(quantity) AS avg_items
+FROM bit_db.febsales f
+JOIN bit_db.customers c
+ON f.orderid = c.order_id
+WHERE LENGTH(orderid) = 6
+AND orderid != 'Order ID'
+GROUP BY acctnum;
