@@ -27,7 +27,7 @@ SELECT MIN(price) AS lowest_cost_product,product
 FROM bit_db.jansales; 
 
 5. /*What was the total revenue for each product sold in January?*/
-SELECT product,SUM(quantity)*price AS revenue 
+SELECT SUM(quantity)*price AS revenue 
 FROM bit_db.jansales
 GROUP by product; 
 
