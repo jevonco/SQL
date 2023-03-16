@@ -1,3 +1,5 @@
+In this analysis, I developed different business scenarios/questions for a data set of the top 50 spotify songs from 2021 and use SQL to find the insights/answers.
+
 1. /*How many artist appear more than once in the Top 50 songs? How many times?*/
 
 SELECT artist_name, COUNT(artist_name)
@@ -23,15 +25,7 @@ DESC
 LIMIT 10; 
 --Song IDs in order 46,36,39,48,25,43,14,42,21,41
 
-4. /*Create a playlist for those who want to chill to the top 50 songs*/
-
-SELECT track_name, artist_name, id, loudness
-FROM bit_db.spotifydata
-ORDER BY loudness
-LIMIT 10;
---Song IDs in order 44,12,49,26,28,1,37,45,17,29
-
-5. /*Create new playlist options for new listeners featuring Spotify's top 50 songs from 2022*/
+4. /*Create new playlist options for new listeners featuring Spotify's top 50 songs from 2022*/
 
 SELECT artist_name, track_name,
     CASE 
@@ -42,7 +36,7 @@ SELECT artist_name, track_name,
 FROM bit_db.spotifydata
 ORDER BY playlist; 
 
-6. /*How many songs are in each playlist?*/
+5. /*How many songs are in each playlist?*/
 
 SELECT COUNT(track_name) AS number_of_track,
     CASE 
@@ -53,3 +47,12 @@ SELECT COUNT(track_name) AS number_of_track,
 FROM bit_db.spotifydata
 GROUP BY playlist
 ORDER BY playlist;
+
+6. /*What percentage of the top 50 songs are in the Major modality*/
+SELECT
+    (SELECT COUNT(song_mode)
+    FROM bit_db.spotifydata
+    WHERE song_mode = 1)
+/CAST(COUNT(song_mode) AS FLOAT) AS major_mode_percentage
+FROM bit_db.spotifydata; 
+
