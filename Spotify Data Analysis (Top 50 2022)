@@ -1,0 +1,55 @@
+1. /*How many artist appear more than once in the Top 50 songs? How many times?*/
+
+SELECT artist_name, COUNT(artist_name)
+FROM bit_db.spotifydata
+GROUP by artist_name
+HAVING COUNT(artist_name) > 1; 
+--10 artist appear; 7 of 10 only appear twice; Olivia Rodrigo & Doja cat both appear 4 times
+
+2. /*What is the most popular key amongst the top 50 songs*/
+SELECT song_key, COUNT(song_key) AS frequency
+FROM bit_db.spotifydata
+GROUP BY song_key
+ORDER BY COUNT(song_key)
+DESC;
+--Most popular key in order are C# (pitch class notation)
+
+3. /*Create a playlist for those who want to dance to the top 50 songs*/
+
+SELECT track_name, artist_name, id
+FROM bit_db.spotifydata
+ORDER BY danceability
+DESC
+LIMIT 10; 
+--Song IDs in order 46,36,39,48,25,43,14,42,21,41
+
+4. /*Create a playlist for those who want to chill to the top 50 songs*/
+
+SELECT track_name, artist_name, id, loudness
+FROM bit_db.spotifydata
+ORDER BY loudness
+LIMIT 10;
+--Song IDs in order 44,12,49,26,28,1,37,45,17,29
+
+5. /*Create new playlist options for new listeners featuring Spotify's top 50 songs from 2022*/
+
+SELECT artist_name, track_name,
+    CASE 
+    WHEN tempo < 100 THEN 'Chill Vibes'
+    WHEN tempo > 100 AND tempo < 130 THEN 'Social Hour'
+    WHEN tempo > 130 THEN 'Party Time!'
+    END Playlist
+FROM bit_db.spotifydata
+ORDER BY playlist; 
+
+6. /*How many songs are in each playlist?*/
+
+SELECT COUNT(track_name) AS number_of_track,
+    CASE 
+    WHEN tempo < 100 THEN 'Chill Vibes'
+    WHEN tempo > 100 AND tempo < 130 THEN 'Social Hour'
+    WHEN tempo > 130 THEN 'Party Time!'
+    END Playlist
+FROM bit_db.spotifydata
+GROUP BY playlist
+ORDER BY playlist;
