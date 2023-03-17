@@ -1,4 +1,4 @@
-In this analysis, I developed different business scenarios/questions for a data set of the top 50 spotify songs from 2021 and use SQL to find the insights/answers.
+In this analysis, I developed different business scenarios/questions for a data set of the top 50 spotify songs from 2021 and used SQL to find the insights/answers.
 
 1. /*How many artist appear more than once in the Top 50 songs? How many times?*/
 
@@ -47,6 +47,7 @@ SELECT COUNT(track_name) AS number_of_track,
 FROM bit_db.spotifydata
 GROUP BY playlist
 ORDER BY playlist;
+--13 Chill, 17 Party Time!, 20 Social Hour
 
 6. /*What percentage of the top 50 songs are in the Major modality*/
 SELECT
@@ -55,9 +56,11 @@ SELECT
     WHERE song_mode = 1)
 /CAST(COUNT(song_mode) AS FLOAT) AS major_mode_percentage
 FROM bit_db.spotifydata; 
+--0.62
 
 7. /*What is the average popularity score for the artists in the database?*/
 
 SELECT AVG(popularity)
 FROM bit_db.spotifydata;
+--86.6
 
