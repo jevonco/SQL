@@ -1,0 +1,39 @@
+In this analysis, I developed a few questions and used SQL to find the answers. I also include a few examples of exploratory analysis using SQL.
+
+/*Which street has the highest average saefty rating?*/
+
+/*Which city has the lowest average safety rating?*/
+
+/*Based on the safety ratings given by two auditors, make recommendations to the city
+on which bike lanes should be removed, improved, and left as is.*/
+
+WITH bike_lane_cte AS 
+    (SELECT street, safetyrating, 
+    AVG(safetyrating) OVER (PARTITION BY street) AS average_safety_rating
+    FROM citybikelanes
+    ORDER BY street)
+SELECT street, safetyrating, average_safety_rating, 
+    CASE 
+    WHEN average_safety_rating >= 4 THEN 'Leave As-Is'
+    WHEN average_safety_rating <=2.5 THEN 'Remove'
+    ELSE 'Improvements Needed'
+    END Recommendation
+FROM bike_lane_cte
+ORDER BY recommendation;
+
+--Exploratory Analysis: The bike lanes have been installed periodically over the past 20 years.
+--I am querying the table to uncover trnnds in the table; specifically in how the the lanes installed before and after 2010 compare.
+
+SELECT AVG(safetyrating)
+FROM CityBikeLanes
+WHERE year_installed < 2010;
+--4.64
+
+SELECT AVG(safetyrating)
+FROM CityBikeLanes
+WHERE year_installed > 2011;
+--4.07
+
+
+
+
