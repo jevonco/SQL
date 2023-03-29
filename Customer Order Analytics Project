@@ -1,6 +1,6 @@
-In this analysis, I am querying multple tables to reveal customer and order statistics from a sales database.
+This SQL code queries an H-1 sales database for an electronic device retailer. In the analysis, I use aggregate functions, JOINs, and GROUP BY/HAVING. 
 
-1. /*What were the total sales for January*/
+1./*What were the total sales for January*/
 SELECT COUNT(*)
 FROM bit_db.jansales
 WHERE LENGTH(orderid) = 6
