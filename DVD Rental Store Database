@@ -1,8 +1,7 @@
-The DVD Rental Store Database is comprised of 15 tables, totaling 44,820 rows. The queries here apply to various business use cases for the DVD rental company.
-These use cases inform decisions on customer promotions, confirmation of compliance with privacy guidelines, and reveal trends in sales/inventory/merchandising.
-
-There is a wide range of queries which include aggregate functions, subqueries, JOINs, GROUP BY/Having, Pattern Matching with wildcards, 
-Extract with temporal data types, Concatenation and more. 
+Using PostgreSQL, I query a DVD Rental Store's Database which contains 15 tables, totaling 44,820 rows. The queries here apply to various business use cases 
+for the DVD rental store company. For example, these SQL queries would inform decisions on customer promotions, confirmation of compliance with privacy guidelines,
+and reveal trends in sales/inventory/merchandising. I use aggregate functions, subqueries, IN, JOINs, GROUP BY/Having, Pattern Matching with wildcards, 
+EXTRACT with temporal data types, Concatenation and more. 
 
 
 --
