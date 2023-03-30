@@ -58,7 +58,7 @@ GROUP BY product;
 
 9. /*Which locations in New York received at least 3 orders in January, and how many orders did they each receive?*/
 
-SELECT DISTINCT(location), COUNT(*)
+SELECT DISTINCT(location) as Address, COUNT(*) 'Number of Orders'
 FROM bit_db.jansales
 WHERE location LIKE '%new york%'
 AND LENGTH(orderid) = 6
