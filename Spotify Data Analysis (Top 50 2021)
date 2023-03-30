@@ -1,5 +1,5 @@
 I developed different business scenarios/questions for a data set of the top 50 spotify songs from 2021 and used SQL to find the insights/answers.
-I use CASE, CAST, CTES, aggregate functions,  
+I use CASE, CAST, CTES, and aggregate functions. 
 
 /*How many artist appear more than once in the Top 50 songs? How many times?*/
 
