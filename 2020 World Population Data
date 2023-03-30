@@ -1,5 +1,5 @@
-# With this dataset, I was interested in finding trends in regard to where individuals were moving from/to in 2020. 
-## I use aggregae functions, CASE, IN, subqueries, comparison operators, LIMIT & GROUP BY
+With this dataset, I was interested in finding trends in regard to where individuals were moving from/to in 2020. 
+I use aggregae functions, CASE, IN, subqueries, comparison operators, LIMIT & GROUP BY
 
 
 Countries and dependent territories, 2020 Data 
