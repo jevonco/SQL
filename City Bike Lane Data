@@ -28,7 +28,7 @@ WHERE year_installed < 2010) AS "pre 2010"
 FROM CityBikeLanes
 WHERE year_installed > 2011;
 
-/*What relationships can you find in the bike lane safety data*/
+/*What relationships can you find in the bike lane safety data?*/
 
 SELECT street, protected, safetyrating, width_feet
 FROM citybikelanes
