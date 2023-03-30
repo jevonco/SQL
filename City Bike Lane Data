@@ -1,8 +1,5 @@
-In this analysis, I developed a few questions and used SQL to find the answers. I also include a few examples of exploratory analysis using SQL.
-
-/*Which street has the highest average saefty rating?*/
-
-/*Which city has the lowest average safety rating?*/
+With this database table, I use SQL to find insights into and make recommendations for the safety stats of the city bike share program.
+I use a Window Function, subqueries, UNION, CASE aggregate functions and comparison operators.
 
 /*Based on the safety ratings given by two auditors, make recommendations to the city
 on which bike lanes should be removed, improved, and left as is.*/
@@ -21,18 +18,35 @@ SELECT street, safetyrating, average_safety_rating,
 FROM bike_lane_cte
 ORDER BY recommendation;
 
---Exploratory Analysis: The bike lanes have been installed periodically over the past 20 years.
---I am querying the table to uncover trnnds in the table; specifically in how the the lanes installed before and after 2010 compare.
+/*The city changed auditors in 2010 after they updated their lane specs, policies and proceedures for installing the bike lanes around the city. 
+How does the average safety rating of the bike lanes installed before the changes in 2010 compare to those install after the changes?
 
-SELECT AVG(safetyrating)
+SELECT AVG(safetyrating) AS "post 2010",
+    (SELECT AVG(safetyrating)
 FROM CityBikeLanes
-WHERE year_installed < 2010;
---4.64
-
-SELECT AVG(safetyrating)
+WHERE year_installed < 2010) AS "pre 2010"
 FROM CityBikeLanes
 WHERE year_installed > 2011;
---4.07
+
+/*What relationships can you find in the bike lane safety data*/
+
+SELECT street, protected, safetyrating, width_feet
+FROM citybikelanes
+WHERE protected = 'no'
+AND width_feet < 4
+
+UNION
+
+SELECT street, protected, safetyrating, width_feet
+FROM citybikelanes
+WHERE protected = 'no'
+AND width_feet >= 4
+ORDER BY street,width_feet;
+
+--The above query reveals the lanes with the lowest scores 1) have no protection from motor vehicle traffic and 2) are located on narrower streets (< 4')
+
+
+
 
 
 
