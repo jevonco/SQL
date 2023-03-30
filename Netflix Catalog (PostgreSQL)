@@ -1,5 +1,4 @@
-With this analysis I am using asdvanced SQL queries to uncover information about the Netflix catalog.
-
+With this code, I use SQL to find insights into the content available on Netflix. I use pattern matching, CAST, JOINs, and subqueries.
 
 Link to database & query editor: https://bit.io/CharlotteChaze/BreakIntoTech
 
