@@ -1,4 +1,5 @@
-In this analysis, I developed different business scenarios/questions for a data set of the top 50 spotify songs from 2021 and used SQL to find the insights/answers.
+I developed different business scenarios/questions for a data set of the top 50 spotify songs from 2021 and used SQL to find the insights/answers.
+I use aggregate functions, CASE, CAST, 
 
 1. /*How many artist appear more than once in the Top 50 songs? How many times?*/
 
